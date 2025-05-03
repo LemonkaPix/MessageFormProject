@@ -16,6 +16,16 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Interview task" });
 });
 
+// Get all messages
+app.get("/getMessages", async (req, res, next) => {
+  try {
+    const [data] = await sequelize.query("SELECT * FROM messages");
+    res.status(200).json({ success: true, data });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // Global Error Handling Middleware
 app.use((error, req, res, next) => {
   const status = error.statusCode || 500;
