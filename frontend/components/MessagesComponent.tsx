@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -10,6 +8,7 @@ import {
 } from "@/components/ui/table"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TableRowComponent } from "@/components/TableRowComponent";
+import MessageForm from "./MessageFormComponent";
 
 export function MessagesComponent() {
     const messages = [
@@ -26,10 +25,7 @@ export function MessagesComponent() {
         </CardHeader>
         <CardContent>
         <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-4">
-            <Input placeholder="Wpisz wiadomość..." className="flex-1" />
-            <Button>Wyślij</Button>
-            </div>
+            <MessageForm />
             <Table>
             <TableCaption></TableCaption>
             <TableHeader>
