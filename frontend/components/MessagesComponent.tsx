@@ -1,48 +1,26 @@
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TableRowComponent } from "@/components/TableRowComponent";
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import MessageForm from "./MessageFormComponent";
+import MessagesTable from "./MessagesTableComponent";
 
 export function MessagesComponent() {
-    const messages = [
-        { id: "01", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry" },
-        { id: "02", text: "Another example message" },
-        { id: "03", text: "This is a dynamically added message" },
-        { id: "04", text: "Another test message" },
-      ];
 
-    return (
-        <Card>
-        <CardHeader>
+
+  return (
+    <Card>
+      <CardHeader>
         <CardTitle>Wiadomości</CardTitle>
-        </CardHeader>
-        <CardContent>
+      </CardHeader>
+      <CardContent>
         <div className="flex flex-col gap-4">
-            <MessageForm />
-            <Table>
-            <TableCaption></TableCaption>
-            <TableHeader>
-                <TableRow>
-                <TableHead className="w-[100px]">ID</TableHead>
-                <TableHead>Wiadomość</TableHead>
-                <TableHead>Akcje</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {messages.map((message) => (
-                <TableRowComponent key={message.id} id={message.id} text={message.text} />
-                ))}
-            </TableBody>
-            </Table>
+          <MessageForm />
+          <MessagesTable/>
         </div>
-        </CardContent>
+      </CardContent>
     </Card>
-    );
+  );
 }
