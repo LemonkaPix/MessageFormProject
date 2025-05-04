@@ -1,5 +1,4 @@
 "use client";
-import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -15,7 +14,9 @@ import { Input } from "@/components/ui/input";
 import { useAddMessageMutation } from "@/services/messagesAPI";
 
 const formSchema = z.object({
-  messageText: z.string().min(1),
+  messageText: z.string().min(1, {
+    message: "Wiadomość nie może być pusta",
+  }),
 });
 
 export default function MessageForm({ onSuccess }: { onSuccess: () => void }) {
@@ -28,12 +29,10 @@ export default function MessageForm({ onSuccess }: { onSuccess: () => void }) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       await addMessage({ text: values.messageText }).unwrap();
-      toast.success("Message added successfully!");
       form.reset(); // Resetowanie formularza
       onSuccess(); // Wywołanie funkcji po sukcesie
     } catch (error) {
       console.error("Form submission error", error);
-      toast.error("Failed to submit the form. Please try again.");
     }
   }
 
@@ -68,8 +67,8 @@ export default function MessageForm({ onSuccess }: { onSuccess: () => void }) {
             )}
           />
         </div>
-        <Button type="submit" className="flex-shrink-0">
-          Submit
+        <Button type="submit" className="flex-shrink-0" disabled={isLoading}>
+          Wyślij
         </Button>
       </form>
     </Form>

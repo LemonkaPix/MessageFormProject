@@ -28,12 +28,15 @@ export default function MessagesTable({ refreshKey, onSuccess }: { refreshKey: n
   }, [refreshKey, refetch]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Ładowanie...</div>;
   }
   if (isError) {
-    return <div>Error loading messages</div>;
+    return <div>Wystąpił błąd podczas ładowania wiadomości</div>;
   }
-
+  if (messages.length === 0) {
+    return <div>Brak wiadomości do wyświetlenia.</div>;
+  }
+  
   return (
     <Table>
       <TableCaption></TableCaption>
