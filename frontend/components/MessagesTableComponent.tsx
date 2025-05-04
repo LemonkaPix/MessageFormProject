@@ -18,7 +18,7 @@ type Message = {
   text: string;
 };
 
-export default function MessagesTable({ refreshKey }: { refreshKey: number }) {
+export default function MessagesTable({ refreshKey, onSuccess }: { refreshKey: number; onSuccess: () => void }) {
   const { data, isLoading, isError, refetch } = useGetMessagesQuery({});
 
   const messages: Message[] = data?.data || [];
@@ -46,7 +46,12 @@ export default function MessagesTable({ refreshKey }: { refreshKey: number }) {
       </TableHeader>
       <TableBody>
         {messages.map((message) => (
-          <TableRowComponent key={message.id} id={message.id} text={message.text} />
+          <TableRowComponent
+            key={message.id}
+            id={message.id}
+            text={message.text}
+            onSuccess={onSuccess} // Przekazanie funkcji odświeżania
+          />
         ))}
       </TableBody>
     </Table>

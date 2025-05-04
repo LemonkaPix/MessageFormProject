@@ -24,7 +24,7 @@ export function MessagesComponent() {
       <CardContent>
         <div className="flex flex-col gap-4">
           <MessageForm onSuccess={handleRefresh} />
-          <MessagesTable refreshKey={refreshKey} /> {/* Przekazanie klucza */}
+          <MessagesTable refreshKey={refreshKey} onSuccess={handleRefresh} /> {/* Przekazanie funkcji odświeżania */}
         </div>
       </CardContent>
     </Card>
