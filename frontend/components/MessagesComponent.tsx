@@ -1,3 +1,5 @@
+"use client"
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -8,7 +10,11 @@ import MessageForm from "./MessageFormComponent";
 import MessagesTable from "./MessagesTableComponent";
 
 export function MessagesComponent() {
+  const [refreshKey, setRefreshKey] = useState(0);
 
+  const handleRefresh = () => {
+    setRefreshKey((prevKey) => prevKey + 1); // Zwiększenie klucza, aby wymusić odświeżenie
+  };
 
   return (
     <Card>
@@ -17,8 +23,8 @@ export function MessagesComponent() {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-4">
-          <MessageForm />
-          <MessagesTable/>
+          <MessageForm onSuccess={handleRefresh} />
+          <MessagesTable refreshKey={refreshKey} /> {/* Przekazanie klucza */}
         </div>
       </CardContent>
     </Card>

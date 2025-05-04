@@ -1,3 +1,4 @@
+"use client";
 import { MessagesComponent } from "@/components/MessagesComponent";
 import { Provider } from "react-redux";
 import { store } from "./store";

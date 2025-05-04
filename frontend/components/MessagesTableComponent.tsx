@@ -1,3 +1,5 @@
+"use client";
+import { useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -7,14 +9,30 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { TableRowComponent } from "@/components/TableRowComponent";
+import { 
+  useGetMessagesQuery,
+} from "@/services/messagesAPI";
 
-export default function MessagesTable() {
-    const messages = [
-        { id: "01", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry" },
-        { id: "02", text: "Another example message" },
-        { id: "03", text: "This is a dynamically added message" },
-        { id: "04", text: "Another test message" },
-      ];
+type Message = {
+  id: string;
+  text: string;
+};
+
+export default function MessagesTable({ refreshKey }: { refreshKey: number }) {
+  const { data, isLoading, isError, refetch } = useGetMessagesQuery({});
+
+  const messages: Message[] = data?.data || [];
+
+  useEffect(() => {
+    refetch(); // Odświeżanie danych po zmianie klucza
+  }, [refreshKey, refetch]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error loading messages</div>;
+  }
 
   return (
     <Table>

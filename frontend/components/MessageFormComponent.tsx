@@ -1,5 +1,4 @@
 "use client";
-
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,28 +12,36 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useAddMessageMutation } from "@/services/messagesAPI";
 
 const formSchema = z.object({
   messageText: z.string().min(1),
 });
 
-export default function MessageForm() {
+export default function MessageForm({ onSuccess }: { onSuccess: () => void }) {
+  const [addMessage, { isLoading, isError }] = useAddMessageMutation({});
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values);
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      );
+      await addMessage({ text: values.messageText }).unwrap();
+      toast.success("Message added successfully!");
+      form.reset(); // Resetowanie formularza
+      onSuccess(); // Wywołanie funkcji po sukcesie
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");
     }
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error loading messages</div>;
   }
 
   return (

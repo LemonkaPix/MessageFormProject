@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import { config } from "dotenv";
 import sequelize from "./utils/database.js";
+import cors from "cors";
 
 // Initialize environment variables
 config();
@@ -9,6 +10,7 @@ config();
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 
 // Root route
