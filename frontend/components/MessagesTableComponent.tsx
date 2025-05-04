@@ -31,7 +31,7 @@ export default function MessagesTable({ refreshKey, onSuccess }: { refreshKey: n
     return <div>Ładowanie...</div>;
   }
   if (isError) {
-    return <div>Wystąpił błąd podczas ładowania wiadomości</div>;
+    return <div className="text-red-500 mt-2">Wystąpił błąd podczas ładowania wiadomości</div>;
   }
   if (messages.length === 0) {
     return <div>Brak wiadomości do wyświetlenia.</div>;

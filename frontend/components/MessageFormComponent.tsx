@@ -36,13 +36,6 @@ export default function MessageForm({ onSuccess }: { onSuccess: () => void }) {
     }
   }
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (isError) {
-    return <div>Error loading messages</div>;
-  }
-
   return (
     <Form {...form}>
       <form
@@ -71,6 +64,11 @@ export default function MessageForm({ onSuccess }: { onSuccess: () => void }) {
           Wyślij
         </Button>
       </form>
+      {isError && (
+        <div className="text-red-500 mt-2">
+          Wystąpił błąd podczas wysyłania wiadomości
+        </div>
+      )}
     </Form>
   );
 }
