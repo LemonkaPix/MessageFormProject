@@ -1,54 +1,68 @@
-# Zadanie Rekrutacyjne
+# 📬 Message Form Project
 
-## Cel
+## 🧠 Overview
 
-Rozbudowa istniejącego projektu poprzez implementację formularza do dodawania wiadomości do bazy danych. Dodatkowo, wiadomości powinny być wyświetlane w tabeli z następującymi kolumnami: ID, Wiadomość, Akcje.
+The application allows you to manage messages: add, edit, and delete. The frontend is built with **React**, **RTK Query**, and **ShadCN** components. The backend provides a REST API (Node.js) with full CRUD support.
 
-## Wymagania
+## ✅ Features
 
-- Node.js v18.17.0+
-- Docker v20.10.11+
+### 📝 Add Message Form
+- Text input for message content.
+- Validation (no empty messages, SQL injection protection).
+- On submit, the message is saved to the database.
 
-### Formularz dodawania wiadomości
+### 📄 Message Table
+- Displays a list of messages with columns: **ID**, **Message**, **Actions**.
+- Actions:
+  - **Edit** – opens a popup with an edit form.
+  - **Delete** – removes the message after confirmation.
 
-- Umożliwia wprowadzenie treści wiadomości oraz dodanie jej do bazy danych.
+### ⚙️ Backend
+- Node.js + Express.
+- REST API for CRUD operations.
 
-### Tabela wiadomości
+### 📡 RTK Query
+- Handles backend communication.
+- Automatic synchronization and caching.
 
-- Wyświetla listę wiadomości z kolumnami: ID, Wiadomość, Akcje.
-- W każdym wierszu w kolumnie "Akcje" powinny znajdować się dwie funkcjonalności:
-  - **Edycja**: Po naciśnięciu przycisku "Edytuj", powinien pojawić się popup z formularzem umożliwiającym edycję wybranej wiadomości.
-  - **Usuwanie**: Po naciśnięciu przycisku "Usuń", wiadomość powinna zostać usunięta z bazy danych.
+### 🎨 UI with ShadCN
+- Ready-to-use ShadCN components.
+- Responsive, modern interface.
 
-### Backend
+---
 
-- Należy samodzielnie zaimplementować backend, który obsłuży dodawanie, edytowanie i usuwanie wiadomości z bazy danych.
+## 🛠️ Requirements
 
-### Użycie RTK Query
+- **Node.js** v18.17.0+
+- **Docker** v20.10.11+
 
-- Do komunikacji z serwerem należy wykorzystać RTK Query.
+---
 
-### Komponenty ShadCN
+## 🚀 Getting Started
 
-- W projekcie należy zastosować gotowe komponenty z biblioteki ShadCN, co umożliwi szybkie i estetyczne tworzenie interfejsu użytkownika.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repository.git
+   cd your-repository
+   ```
 
-### Uruchomienie projektu
+2. Import the database schema and initial data from `messages.sql` into your database before starting the application.
 
-Aby uruchomić projekt, należy w terminalu w głównym katalogu projektu wpisać:
+3. Start the application:
+   ```bash
+   docker compose up
+   ```
 
-```
-docker compose up
-```
+4. Open your browser and go to:
+   ```
+   http://localhost:3000
+   ```
 
-## Dystrybucja
+---
 
-Wynik powinien być wykonany na osobnym branchu np. "dev" w prywatnym repozytorium i przesłany jako pull request z "dev" na "main". Jako reviewer należy ustawić użytkownika @BiznesportTech.
-Żeby BiznesPortTech mógł zobaczyć Twoje repozytorium, musisz dodać go jako współpracownika. 
-Możesz to zrobić w zakładce "Settings" -> "Collaborators" -> "Manage access" -> "Invite a collaborator".
+## 🧩 Notes
 
-## Dodatkowe wskazówki
-
-- Zadbaj o walidację danych w formularzu.
-- Upewnij się, że interfejs użytkownika jest intuicyjny i przyjazny.
-- Zastosuj najlepsze praktyki programistyczne w kodzie frontendowym i backendowym.
-- Upewnij się, że po uruchomieniu projektu za pomocą polecenia `docker compose up` aplikacja uruchamia się poprawnie i działa zgodnie z oczekiwaniami. To właśnie wynik działania tego polecenia będzie weryfikowany w pierwszej kolejności.
+- All forms include validation (including SQL injection protection).
+- The interface is responsive and intuitive.
+- Both frontend and backend code follow best practices.
+- The project starts correctly using `docker compose up`.
