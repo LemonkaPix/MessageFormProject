@@ -2,7 +2,7 @@
 
 ## 🧠 Overview
 
-The application allows you to manage messages: add, edit, and delete. The frontend is built with **React**, **RTK Query**, and **ShadCN** components. The backend provides a REST API (Node.js) with full CRUD support.
+The application allows you to manage messages: add, edit, and delete. The frontend is built with **React**, **RTK Query**, and **ShadCN** components. The backend provides a REST API (Node.js) with full CRUD support. This project was made for interview task.
 
 ## ✅ Features
 
